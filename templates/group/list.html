@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %} list item {% endblock %}
+
+{% block content %}
+
+<h1 class="lead my-3">list group..</h1>
+
+<p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content.</p>
+
+<div class="flex_start">
+    {% if result %}
+    {% for i in result %}
+    <div class="card mt-2 me-1">
+
+        <ul class="card-header list-group list-group-horizontal">
+            <li class="list-group-item pt-3">
+                <sup class="float-start">id:</sup>
+                {{ i.id }}
+            </li>
+            <li class="list-group-item pt-3">
+                <sup class="float-start">owner:</sup>
+                {{ i.owner }}
+            </li>
+        </ul>
+
+        <ul class="card-body list-group list-group-flush">
+            <li class="list-group-item">
+                <sup class="d-block">title:</sup>
+                {{ i.title }}
+            </li>
+            <li class="list-group-item">
+                <sup>description:</sup>
+                <p>{{ i.description | striptags() | truncate(190, True, '...', 5) | safe }}</p>
+            </li>
+            {% include "created_modified.html" %}
+        </ul>
+
+        <div class="card-footer">
+        <a class="btn btn-outline-primary btn-sm" href="/chat/group/{{ i.id }}" role="button">view details &raquo;</a>
+        </div>
+
+    </div>
+
+    {% endfor %}
+
+        {% else %}
+        <span class="mt-5">no groups created</span>
+    {% endif %}
+</div>
+
+
+{% endblock %}

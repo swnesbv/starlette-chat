@@ -1,0 +1,15 @@
+starlette[full]
+uvicorn
+gunicorn
+psycopg2-binary
+asyncpg
+whitenoise
+websockets
+sqlalchemy[asyncio]
+pydantic
+bcrypt
+cryptography
+python-decouple
+PyJWT
+Pillow
+bs4

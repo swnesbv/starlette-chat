@@ -1,0 +1,69 @@
+
+{% extends "base.html" %}
+{% block title %} user detail {{ i.id }} {% endblock %}
+
+{% block content %}
+
+<h1 class="lead my-3">detail user.. {{ i.email }}</h1>
+
+{% if request.prv.prv_key %}
+<sup class="my-3">detail prv key.. {{ request.prv.prv_key }}</sup>
+{% endif %}
+
+<div class="card p-3">
+
+    <ul class="card-header list-group list-group-horizontal">
+        <li class="list-group-item pt-3">
+            <sup class="float-start">id:</sup>
+            {{ i.id }}
+        </li>
+        <li class="list-group-item pt-3">
+            <sup class="float-start">name:</sup>
+            {{ i.name }}
+        </li>
+        <li class="list-group-item pt-3">
+            <sup class="float-start">email:</sup>
+            {{ i.email }}
+        </li>
+    </ul>
+
+    <ul class="card-body list-group list-group-flush">
+        {% include "created_modified.html" %}
+    </ul>
+
+    {% if i.file %}
+    <div class="card-footer">
+    <img class="shadow-sm mb-2" src="{{ i.file }}" alt="img">
+    </div>
+    {% endif %}
+
+</div>
+
+{% if request.user.user_id == i.id %}
+<div class="card mt-2">
+    <div class="card-header">
+        <a class="btn btn-outline-primary btn-sm me-2" href="/account/update/{{ i.id }}" role="button">
+            <i class="bi bi-pencil"></i> &raquo;
+        </a>
+        <a class="btn btn-outline-danger btn-sm" href="/account/delete/{{ i.id }}" role="button">
+            <i class="bi bi-trash3"></i> &raquo;
+        </a>
+    </div>
+</div>
+{% endif %}
+
+{% if request.prv.prv_key and prv.id == i.id %}
+<div class="card mt-2">
+    <div class="card-header">
+        <a class="btn btn-outline-primary btn-sm me-2" href="/privileged/update/{{ i.id }}" role="button">
+            <i class="bi bi-pencil"></i> &raquo;
+        </a>
+        <a class="btn btn-outline-danger btn-sm" href="/privileged/delete/{{ i.id }}" role="button">
+            <i class="bi bi-trash3"></i> &raquo;
+        </a>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

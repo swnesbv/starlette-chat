@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<h1 class="container h6">
+    Hello, world..! {% if prv %} privileged: {{ prv.email }} {% endif %} {% if
+    request.user.email %} user: {{ request.user.email }} {% endif %}
+</h1>
+
+{% endblock %}
